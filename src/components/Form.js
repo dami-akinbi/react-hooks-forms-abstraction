@@ -9,7 +9,7 @@ function Form() {
 
   function handleChange(event) {
     const name = event.target.name;
-    const value = event.target.value;
+    let value = event.target.value;
 
     if (event.target.value === "checked") value = event.target.checked;
 
