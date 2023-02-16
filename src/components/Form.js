@@ -4,35 +4,45 @@ function Form() {
   const [formData, setFormData] = useState({
     firstName: "John",
     lastName: "Henry",
+    admin: "false",
   });
 
-  function handleFirstNameChange(event) {
+  function handleChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    if (event.target.value === "checked") value = event.target.checked;
+
     setFormData({
       ...formData,
-      firstName: event.target.value,
+      [name]: value,
     });
   }
 
-  function handleLastNameChange(event) {
-    setFormData({
-      ...formData,
-      lastName: event.target.value,
-    });
+  function handleSumbit(event) {
+    event.preventDefault();
+    console.log(formData);
   }
 
   return (
-    <form>
+    <form onSubmit={handleSumbit}>
       <input
         type="text"
         name="firstName"
+        onChange={handleChange}
         value={formData.firstName}
-        onChange={handleFirstNameChange}
       />
       <input
         type="text"
         name="lastName"
+        onChange={handleChange}
         value={formData.lastName}
-        onChange={handleLastNameChange}
+      />
+      <input
+        type="checkbox"
+        name="admin"
+        onChange={handleChange}
+        value={formData.admin}
       />
       <button type="submit">Submit</button>
     </form>
